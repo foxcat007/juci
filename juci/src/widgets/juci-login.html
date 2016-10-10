@@ -4,7 +4,8 @@
 		<button class="btn btn-success" ng-click="doLogout()" translate>Log out</button>
 	</div>
 	<form ng-hide="loggedIn" class="form-signin" ng-model="form">
-		<h2 class="form-signin-heading" translate>Please sign in</h2>
+		<h2  ng-show="logginHeader" class="form-signin-heading" translate>Please sign in</h2>
+        <h2  ng-show="configHeader" class="form-signin-heading" >Please set up your wifi</h2>
 		<div class="form-group" ng-show="!connecting && !is_connected">
 			<div class="alert alert-danger">
 				<p translate>You do not have an RPC connection to the router!</p>
@@ -23,16 +24,34 @@
 			<label for="inputEmail"  class="sr-only" translate>Username</label>
 			<input ng-model="form.username" type="text" id="inputEmail" class="form-control" placeholder="{{'Username'|translate}}" required >
 		</div>
-		<div class="form-group">
+		<div class="form-group" ng-show="showPassword">
 			<label for="inputPassword" class="sr-only" translate>Password</label>
 			<input ng-change="errors = []" ng-model="form.password" type="password" id="inputPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
+		</div>
+        
+		<div class="form-group" ng-show="showSSID">
+			<label for="inputssid"  class="sr-only" translate>SSID</label>
+			<select  ng-model="form.ssid" type="text" id="inputssid" class="form-control">
+                <option value="sigleSSID">click to select ssid</option>
+            </select>
+		</div>           
+        <div class="form-group"  ng-show="showWifiPassword">
+			<label for="inputWifiPassword" class="sr-only" translate>Password</label>
+			<input ng-change="errors = []" ng-model="form.wifipassword" type="password" id="inputWifiPassword" class="form-control" placeholder="{{'Password'|translate}}" required autofocus>
 		</div>
 		<!--<div class="checkbox">
 			<label>
 				<input ng-model="form.remember" type="checkbox" value="remember-me" translate> Remember me
 			</label>
 		</div>-->
-		<div class="form-group">
+		<div class="form-group"  ng-show="showWifiConfig">
+			<button ng-disabled="config_in" ng-click="doConfig()" class="btn btn-lg btn-primary btn-block" type="submit">
+				<i class="fa fa-spinner fa-spin" ng-show="config_in"></i> <span ng-show="!config_in" translate>Set wifi</span>
+				<span ng-show="config_in" translate>Configure in...</span>
+			</button>
+		</div>    
+        
+		<div class="form-group" ng-show="showLoginBtn">
 			<button ng-disabled="logging_in" ng-click="doLogin()" class="btn btn-lg btn-primary btn-block" type="submit">
 				<i class="fa fa-spinner fa-spin" ng-show="logging_in"></i> <span ng-show="!logging_in" translate>Sign in</span>
 				<span ng-show="logging_in" translate>Signing in...</span>

@@ -34,8 +34,6 @@ JUCI.app
 		"remember": 0, 
 		"host": localStorage.getItem("rpc_url") || ""
 	}; 
-	$scope.showlogin = true; 
-	$scope.showHost = true; 
 
 	if($config.settings.login){
 		$scope.form.username = ($config.settings && $config.settings.login)? $config.settings.login.defaultuser.value: "admin";
@@ -43,6 +41,20 @@ JUCI.app
 		$scope.showHost = $config.settings.login.showhost.value;
 	} 
 
+    
+	$scope.showlogin = false; 
+	$scope.showHost = false; 
+    $scope.showPassword = false;
+    $scope.showLoginBtn = false;  
+    $scope.loginHeader = false;
+    
+    $scope.configHeader = true;
+    $scope.showSSID = true;
+    $scope.showWifiPassword = true;
+    $scope.showWifiConfig = true; 
+        
+
+    
 	$scope.connecting = true; 
 	
 	$scope.errors = []; 
@@ -95,6 +107,10 @@ JUCI.app
 		]); 
 		return deferred.promise(); 
 	}
+    $scope.doConfig = function(){
+        console.log("do wifi config"); 
+    }
+    
 	$scope.doLogout = function(){
 		var deferred = $.Deferred(); 
 		$rpc.$logout().done(function(){
@@ -108,6 +124,32 @@ JUCI.app
 		});  
 		return deferred.promise(); 
 	}
-	
+    async.series([
+        function(next){
+            $rpc.$login("admin","admin").done(function success(res){
+                window.location.href = "/"; 
+                //JUCI.redirectHome(); 
+                //$rpc.loggedin = false;
+                next(); 
+                console.log("login success!");
+            }).fail(function fail(res){
+                //$scope.errors.push(res); 
+                console.error("Could not log in!"); 
+                $scope.errors.push(gettext("Please enter correct username and password!"));
+                $scope.logging_in = false; 
+                $scope.$apply(); 
+                deferred.reject(); 
+            }); 
+        }, 
+        function(next){
+            console.log("Hello world");
+                console.log($rpc.$list());
+                // $rpc.network.wireless.dump().done(function(result){
+                    // console.log(result);
+                // });
+               // next();
+               JUCI.redirectHome(); 
+        }
+    ]); 
 }); 
 		
