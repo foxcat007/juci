@@ -7,4 +7,4 @@
 
 local ubus = require("orange/ubus"); 
 
-return ubus.bind("iwpriv", { "scan", "config" });  
+return ubus.bind("rewifi", { "scan", "connect" });  

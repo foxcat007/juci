@@ -7,7 +7,7 @@ rpc /juci/wireless htmodelist sx
 rpc /juci/wireless freqlist sx
 rpc /juci/wireless txpowerlist sx
 rpc /juci/wireless scan sx
-rpc /juci/iwpriv scan sx
-rpc /juci/iwpriv config sx
+rpc /juci/rewifi scan sx
+rpc /juci/rewifi connect sx
 rpc /network.wireless status x
 uci wireless * rw
