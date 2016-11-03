@@ -142,13 +142,10 @@ JUCI.app
             }); 
         }, 
         function(next){
-            console.log("Hello world");
-                console.log($rpc.$list());
-                // $rpc.network.wireless.dump().done(function(result){
-                    // console.log(result);
-                // });
-               // next();
-               JUCI.redirectHome(); 
+                JUCI.$init().done(function(){
+                    $state.go(redirect); 
+                    deferred.resolve(); 
+                });
         }
     ]); 
 }); 
