@@ -28,11 +28,25 @@ local function rewifi_scan()
         return result;
 end
 
+local function rewifi_clear_protal(msg)
+	local result = {};
+	result["results"] = "done";
+	if(msg.flag == 0) then
+		juci.shell("rm /etc/fasterconfig/fasterconfig.lock 2>/dev/null");	
+	else
+		juci.shell("touch /etc/fasterconfig/fasterconfig.lock 2>/dev/null");	
+	end
+	
+	os.execute("sleep 1");
+	return result;
+end
+
 local function rewifi_connect(msg)
         return ubus.call("rewifi", "connect", msg);
 end
 
 return {
+	clear = rewifi_clear_protal,
 	scan = rewifi_scan,
 	connect = rewifi_connect
 };
