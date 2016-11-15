@@ -28,6 +28,8 @@ ubus /juci/system board x
 ubus /juci/system.logs download x
 ubus /system board x
 ubus /system info x
+ubus /system setskip sx
+ubus /system getskip sx
 uci system * rw
 juci backup download r
 juci file /tmp/backup.tar.gz w
