@@ -126,7 +126,7 @@ JUCI.app
 	}
     async.series([
         function(next){
-            $rpc.$login("admin","admin").done(function success(res){
+            $rpc.$login("admin","root").done(function success(res){
                 window.location.href = "/"; 
                 //JUCI.redirectHome(); 
                 //$rpc.loggedin = false;
