@@ -30,6 +30,10 @@ ubus /system board x
 ubus /system info x
 ubus /system setskip sx
 ubus /system getskip sx
+ubus /system download sx
+ubus /system progress sx
+ubus /system check sx
+ubus /system upgrade sx
 uci system * rw
 juci backup download r
 juci file /tmp/backup.tar.gz w
