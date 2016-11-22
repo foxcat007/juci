@@ -38,6 +38,8 @@ local function rewifi_clear_protal(msg)
 		juci.shell("touch /etc/fasterconfig/fasterconfig.lock 2>/dev/null");	
 		juci.shell("uci set system.@system[0].fasterconfig=1");	
 	end
+
+	juci.shell("uci commit");
 	
 	os.execute("sleep 1");
 	return result;
