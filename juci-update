@@ -44,8 +44,9 @@ fi
 }
 
 # now update the index file to include any extra files
-INDEX=${WWW}/index.html
+INDEX=${WWW}/juci/index.html
 #gunzip -f ${INDEX}.gz
+mkdir -p ${WWW}/juci;
 mkdir -p ${WWW}/js;
 mkdir -p ${WWW}/css;
 
@@ -66,7 +67,7 @@ for file in `find ${WWW}/js -name "$JS_WILDCARD" | sort`; do
 	echo "Adding $file to index"
 	JSFILE=${file#${WWW}/}
 	JSFILE=${JSFILE%.gz}
-	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"${JSFILE}\"></script>"
+	SCRIPTS_HTML="${SCRIPTS_HTML}<script src=\"../${JSFILE}\"></script>"
 done
 #cat ${INDEX} | tr -d '\n' | sed "s/<!-- SCRIPTS_BEGIN -->.*<!-- SCRIPTS_END -->/<!-- SCRIPTS_BEGIN -->${SCRIPTS_HTML}<!-- SCRIPTS_END -->/" 
 
@@ -77,7 +78,7 @@ echo "<!doctype html>
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
 	<title>JUCI</title><!--ng-bind='title'-->
-	<link rel='shortcut icon' href='/favicon.ico' type='image/x-icon' />
+	<link rel='shortcut icon' href='../favicon.ico' type='image/x-icon' />
 	${STYLES_HTML}
 </head>
 <body role='document'>
