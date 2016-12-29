@@ -44,11 +44,10 @@ fi
 }
 
 # now update the index file to include any extra files
-INDEX=${WWW}/juci/index.html
+INDEX=${WWW}/index.html
 #gunzip -f ${INDEX}.gz
 mkdir -p ${WWW}/js;
 mkdir -p ${WWW}/css;
-mkdir -p ${WWW}/juci;
 
 STYLES_HTML="" #"<link href='__all.css' rel='stylesheet' type='text/css' />"
 SCRIPTS_HTML="" #"<script src='__all.js'></script>"

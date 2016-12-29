@@ -32,7 +32,6 @@ window.$ = $;
 */
 
 JUCI.app.config(function ($stateProvider, $locationProvider, $compileProvider, $urlRouterProvider, $controllerProvider, $templateCacheProvider, $provide) {
-	console.log("CONF"); 
 	$locationProvider.hashPrefix('!');
 	$locationProvider.html5Mode(false); 
 	

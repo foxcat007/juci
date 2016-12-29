@@ -46,6 +46,10 @@ body {
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 	color: @theme-heading-color !important;
+	font-size: 18px;
+}
+h2{
+	font-size: 18px;
 }
 
 ul.left-menu li a.open, .nav-tabs &>li &>a {
@@ -66,18 +70,18 @@ ul.left-menu {
 		outline: 0 none;
 		vertical-align: middle;
 	}
-
 	a {
 		margin: 0;
 		display: block;
-		border-bottom: 1px solid #ccc;
-		height: 50px;
-		line-height: 50px;
+		// border-bottom: 1px solid #ccc;
+		height: 40px;
 		padding-left: 20px;
 		text-decoration: none;
-		font-size: 100%;
 		white-space: nowrap; 
-
+		font-family: OpenSans-Bold;
+		font-size: 12px;
+		color: #3D3D3D;
+		line-height: 40px;
 		.collapsed {
 			border-bottom: none;
 		}
@@ -130,7 +134,7 @@ ul.left-sub-menu {
 
 .juci-container {
 	min-height: 1000px;
-	margin-top: 80px;
+	margin-top: 70px;
 	.juci-sidebar {
 		ul.left-menu {
 			padding: 10px; 
@@ -138,9 +142,22 @@ ul.left-sub-menu {
 				padding-left: 0px; 
 			}
 		}
+		background: #ffffff;
+		width: 210px;
+		box-shadow: 1px 1px 2px 0px #DDDDDD;
+		border-radius: 4px;
+		@media screen and (max-width: 766px) {
+			width: 100%;
+		}
 	}
 	.juci-content {
-
+		background: #ffffff;
+		margin-left: 30px;
+    margin-top: 20px;
+		@media screen and (max-width: 766px) {
+			margin: 0px;
+			padding-top: 20px;
+		}
 	}
 }
 
@@ -198,7 +215,7 @@ a, a:focus, a:hover {
 }
 .top-navbar .navbar-nav .open &>a, .top-navbar .navbar-nav &>a:hover {
 	background-color: #fafafa;
-	border-top: 2px solid @theme-detail-color;
+	// border-top: 2px solid @theme-detail-color;
 }
 .overview-widgets {
 	& > .row {
@@ -210,10 +227,11 @@ a, a:focus, a:hover {
 div.logo {
 	background-image: url('img/header_logo.png');
 	background-size: 100% auto;
-	width: 189px;
-	height: 40px;
+	width: 162px;
+  height: 23px;
+  margin-top: 8px;
+  background-repeat: no-repeat;
 }
-
 .overview-banner {
 	background: url("img/overview_header.jpg") repeat scroll top center !important;
 	background-color: "#fafffa";
@@ -251,52 +269,79 @@ div.logo {
 }
 .top-navbar {
 	color: #111 !important;
-	background-color: white;
 	z-index: 10;
 	position: fixed;
 	width: 100%;
 	top: 0;
-	border-bottom: 1px solid #ccc;
-
+	background: #FFFFFF;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.11);
 	.navbar-nav {
 		& > li {
-			font-family: "helvetica";
-			font-size: 0.9em;
-			letter-spacing: 1px;
-			text-transform: uppercase;
+			font-size: 14px;
+			letter-spacing: 0px;
 			& > a {
 				background-color: transparent;
-				padding-bottom: 8px !important;
-				padding-top: 8px !important;
-				color: #111 !important;
+				color: #666666 !important;
+				line-height: 66px;
+				padding-top: 0px!important;
+				padding-bottom: 0px!important;
+			}
+			& > a:hover {
+			 background-color: transparent!important;
+			}
+			& > .nav-more{
+				width: 90px;
+				position: absolute;
+				top: 70px;
+				background: #fff;
+				line-height: 30px;
+				text-align: center;
+				ul{
+					list-style: none;
+					padding: 0px;
+				}
+				a {
+					color: #666666;
+					font-size: 14px;
+					text-decoration: none;
+				}
 			}
 		}
 		& > .open {
 			& > a:focus {
 				background-color: transparent;
 			}
-			
 			& > a, & > a:hover {
-				background-color: #eee;
-				color: #111 !important;
+				background-color: transparent!important;
+				border-bottom: 4px solid #9B8153;
 				@media screen and (max-width: 968px) {
 					background-color: #ddd; 
 				}
 			}
 		}
 		@media screen and (min-width: 968px) {
-			margin-top: 20px; 
-			margin-left: 30px; 
+		  margin: 0px;
 		}
 	}
 	.navbar-toggle {
 		background-color: #ddd; 
+		@media screen and (max-width: 766px) {
+		  margin-top: 18px;
+      margin-bottom: 18px;
+			border: 1px solid #9B8153;
+			background: #fff;
+			.icon-bar{
+				background-color: #9B8153;
+			}
+		}
 	}
 }
 
 .navbar-default {
 	& .navbar-collapse, & .navbar-form {
 		background-color: transparent; 
+		float: right;
+    padding-right: 20px;
 		@media screen and (max-width: 968px) {
 			border-color: transparent !important;
 		}
@@ -366,3 +411,133 @@ div.error {
 	top: auto;
 	bottom: 15px;
 }
+/**
+  * 底部导航
+  */
+.footer-menu{
+  position: fixed;
+	bottom: 0px;background: #FFFFFF;
+	box-shadow: 0px -2px 4px 0px rgba(0,0,0,0.11);
+	height: 70px;
+	width: 100%;
+	left: 0px;
+	z-index: 900;
+	a {
+		text-decoration: none;
+	}
+  .icon{
+		padding: 23px 6.8%;
+    display: inline-block;
+		img{
+			width: 20px;
+		}
+	}
+	.active {
+		 border-bottom: 2px solid #9B8153;
+	}
+  @media screen and (min-width: 868px) {
+		display: none;
+	}
+}
+/**
+ * 手机端导航
+ */
+.m-navbar {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	position: fixed;
+	overflow: hidden;
+	z-index: 999;
+	top: 0px;
+	bottom: 0px;
+	font-size: 20px;
+	display: block;
+	width: 260px;
+	height: 100%;
+	animation:mymove 0.5s infinite;
+	animation-iteration-count:1;
+	animation-fill-mode: forwards;
+	-webkit-animation:mymove 0.5s infinite; /* Safari and Chrome */
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode: forwards;
+	background: #9B8153;
+	visibility: visible;
+	ul{
+		list-style: none;
+	}
+	.nav-more{
+		margin-top: 20px;
+		li{
+			font-size: 16px;
+			line-height: 40px;
+			font-family: OpenSans-Bold;
+			a{
+				color: #FFFFFF;
+			}
+		}
+	}
+}
+
+.m_left_navbar {
+	position: relative;
+	animation:onemove 0.5s infinite;
+	animation-iteration-count:1;
+	animation-fill-mode: forwards;
+	-webkit-animation:onemove 0.5s infinite; /* Safari and Chrome */
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode: forwards;
+	.navbar-header{
+		background: #AF966B;
+		.navbar-toggle{
+			background: #AF966B;
+			border: 1px solid #FFFFFF;
+			.icon-bar{
+				background: #FFF;
+			}
+		}
+	}
+}
+.m_left_navbar_out{
+  animation:outmove 1s infinite;
+	animation-iteration-count:1;
+	animation-fill-mode: forwards;
+	-webkit-animation:outmove 1s infinite; /* Safari and Chrome */
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode: forwards;
+}
+
+
+@keyframes mymove
+{
+	from {right:-260px;}
+	to {right: 0px;}
+}
+@-webkit-keyframes mymove /* Safari and Chrome */
+{
+	from {right:-260px;}
+	to {right:0px;}
+}
+@keyframes onemove
+{
+	from {left:0;}
+	to {left:-260px;}
+}
+@-webkit-keyframes onemove /* Safari and Chrome */
+{
+	from {left:0;}
+	to {left:-260px;}
+}
+
+@keyframes outmove
+{
+	from {left:-260px;}
+	to {left:0px;}
+}
+@-webkit-keyframes outmove /* Safari and Chrome */
+{
+	from {left:-260px;}
+	to {left:0px;}
+}
+
+

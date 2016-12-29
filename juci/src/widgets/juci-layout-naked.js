@@ -25,4 +25,30 @@ JUCI.app
 })
 .controller("juciLayoutNakedController", function($scope){
 	
+	// 首页title 
+	$scope.titleList = [{
+		text: 'File Manager',
+		href: ''
+	},{
+		text: 'Music Player',
+		href: ''
+	},{
+		text: 'Connection',
+		href: ''
+	},{
+		text: 'Web Terminal',
+		href: ''
+	},{
+		text: 'Setting',
+		href: ''
+	}];
+	// 手机端 
+	$scope.m_head ={
+		navbar : false,
+		left_navbar: ''
+	}
+  $scope.$on('to-parent', function(d,data) {  
+		$scope.m_head = data
+  }); 
+	
 }); 

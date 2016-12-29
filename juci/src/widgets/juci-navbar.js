@@ -26,7 +26,8 @@ JUCI.app
 			$("ul.navbar-nav li a[href='#!"+top_node.href+"']").addClass("open"); 
 			$("ul.navbar-nav li a[href='#!"+top_node.href+"']").parent().addClass("open"); 
 		}, 0); 
-	}; activate(); 
+	}; 
+	activate(); 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
 		activate(); 
 	});
@@ -47,36 +48,55 @@ JUCI.app
 		return menu.children_list > 0; 
 	}
 	
-	$scope.onLogout = function(){
-		$rpc.$logout().always(function(){
-			$juci.redirectHome(); 
-			window.location.reload(); 
-		});
+	// 首页title 
+	$scope.titleList = [{
+		text: 'File Manager',
+		href: ''
+	},{
+		text: 'Music Player',
+		href: ''
+	},{
+		text: 'Connection',
+		href: ''
+	},{
+		text: 'Web Terminal',
+		href: ''
+	},{
+		text: 'Setting',
+		href: ''
+	}];
+	
+	$scope.isMore = false 
+	$scope.showMore = function (){
+		$scope.isMore = true
+	}
+	$scope.hideMore = function () {
+		setTimeout(function(){
+			$scope.isMore = false
+		},1000);
 	}
 
-	$scope.isActive = function (viewLocation) { 
-		return viewLocation === $location.path();
-	};
+	// 手机端 
+	$scope.m_head ={
+		navbar : false,
+		left_navbar: ''
+	}
+  // 显示导航
+	$scope.mShow = function () {
+		if(!$scope.m_head.navbar){
+			$scope.m_head ={
+				navbar : true,
+				left_navbar: 'm_left_navbar'
+			}
+		} else {
+			$scope.m_head ={
+				navbar : false,
+				left_navbar: 'm_left_navbar_out'
+			}
+		}
+		$scope.$emit('to-parent', $scope.m_head);
+		
+	}
 
-	$events.subscribe("logread.msg", function(ev){
-		$scope.log_events.push(ev); 
-		setTimeout(function(){ $scope.$apply(); }, 0); 
-	}); 
-	/*
-	$(function(){
-		var themes = $config.themes; 
-		$config.theme = localStorage.getItem("theme") || "default"; 
-		//var bootstrap = $('<link href="'+themes[$config.theme]+'/css/bootstrap.min.css" rel="stylesheet" />');
-		var theme = $('<link href="'+themes[$config.theme]+'/css/theme.css" rel="stylesheet" />');
-		//bootstrap.appendTo('head');
-		theme.appendTo('head'); 
-		$('.theme-link').click(function(){
-			var themename = $(this).attr('data-theme');
-			var themeurl = themes[themename];
-			$config.theme = themename;
-			localStorage.setItem("theme", themename);
-			//bootstrap.attr('href',themeurl+"/css/bootstrap.min.css");
-			theme.attr('href',themeurl+"/css/theme.css");
-		});
-	});*/
+
 }); 
