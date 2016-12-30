@@ -44,7 +44,7 @@ fi
 }
 
 # now update the index file to include any extra files
-INDEX=${WWW}/index.html
+INDEX=${WWW}/network.html
 #gunzip -f ${INDEX}.gz
 mkdir -p ${WWW}/js;
 mkdir -p ${WWW}/css;
